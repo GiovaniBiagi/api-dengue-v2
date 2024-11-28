@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { dengueController } from "../../controllers/dengue.controller";
+import { dengueController } from "../controllers/dengue.controller";
 
 const router = Router();
 

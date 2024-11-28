@@ -13,28 +13,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Gender {
+  male
+  female
+}
+
 model User {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid()) @map("_id") @db.Uuid
   email     String   @unique
   firstName String
   lastName  String
   birthDate DateTime
   phone     String
-  gender    String
+  gender    Gender
   zipcode   String
   password  String
-  posts     Post[]
+  news      News[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Post {
-  id        String   @id @default(cuid())
+model News {
+  id        String   @id @default(uuid())
   title     String
   subtitle  String
   content   String
   author    User     @relation(fields: [authorId], references: [id])
-  authorId  String
+  authorId  String   @db.Uuid
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
