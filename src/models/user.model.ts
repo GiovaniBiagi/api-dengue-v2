@@ -1,3 +1,4 @@
+import { Gender } from "@prisma/client";
 import { z } from "zod";
 
 export const UserSchema = z.object({
@@ -6,7 +7,7 @@ export const UserSchema = z.object({
   lastName: z.string(),
   birthDate: z.string(),
   phone: z.string(),
-  gender: z.string(),
+  gender: z.nativeEnum(Gender),
   zipcode: z.string(),
   password: z.string(),
 });
