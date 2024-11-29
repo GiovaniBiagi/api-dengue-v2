@@ -7,6 +7,8 @@ export const userController = {
   me: async (request: Request, response: Response) => {
     const token = request.headers.authorization?.split(" ")[1];
 
+    console.log({ token });
+
     const decodedToken = jwt.verify(token!, envs.JWT_SECRET);
 
     if (!decodedToken || typeof decodedToken === "string") {
@@ -20,8 +22,9 @@ export const userController = {
           id: decodedToken.id,
         },
         select: {
-          password: false,
-          news: false,
+          id: true,
+          firstName: true,
+          lastName: true,
         },
       });
 
